@@ -1,0 +1,15 @@
+{
+  "short_name": "Курс Обмена",
+  "name": "Узнать курс валют",
+  "icons": [
+    {
+      "src": "logo16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#2f98fa",
+  "background_color": "#f5f4f9"
+}
