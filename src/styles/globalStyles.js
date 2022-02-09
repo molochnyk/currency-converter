@@ -40,6 +40,9 @@ export const lightTheme = {
   placeholderHover: "#7a7a7a",
 
   btnMode: "#171717",
+
+  linkMode: "#202020",
+  linkModeHover: "#141414d5",
 };
 
 export const darkTheme = {
