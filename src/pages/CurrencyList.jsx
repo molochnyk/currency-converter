@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Table from "../Components/Table/Table";
 import LoadError from "../containers/LoadError";
 
-import { CURRENCIES_LISTS } from "../constants/abbrСurrencies";
+import { CURRENCIES_LISTS } from "../constants/abbreviations";
 
 import useDataCurrency from "../hooks/useDataListCurrency";
 
