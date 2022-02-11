@@ -10,6 +10,8 @@ import { GlobalStyles, lightTheme, darkTheme } from "../styles/globalStyles";
 
 import ToggleTheme from "./ToggleTheme/ToggleTheme";
 
+import Nav from "./Nav/Nav";
+
 import useThemeMode from "../hooks/useThemeMode";
 
 import "normalize.css/normalize.css";
@@ -24,8 +26,9 @@ const App = () => {
         <GlobalStyles />
         <AppWrapper>
           <ContainerFulHd>
+            <ToggleTheme theme={theme} toggleTheme={toggleTheme} />
             <MainWrap>
-              <ToggleTheme theme={theme} toggleTheme={toggleTheme} />
+              <Nav />
               <Routes />
             </MainWrap>
           </ContainerFulHd>
@@ -48,8 +51,13 @@ const ContainerFulHd = styled.div`
 
 const MainWrap = styled.div`
   padding: 50px;
+
+  @media (max-width: 1200px) {
+    padding: 25px 50px 50px 50px;
+  }
+
   @media (max-width: 576px) {
-    padding: 30px;
+    padding: 25px 30px 30px 30px;
   }
 `;
 

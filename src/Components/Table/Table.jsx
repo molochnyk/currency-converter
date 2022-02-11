@@ -1,4 +1,6 @@
 import React, { useMemo } from "react";
+import PropTypes from "prop-types";
+
 import styled from "styled-components";
 
 import { useTable } from "react-table";
@@ -88,5 +90,9 @@ const TableWrap = styled.table`
     }
   }
 `;
+
+Table.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default Table;

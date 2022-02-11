@@ -11,7 +11,10 @@ const useDataCurrency = () => {
     const getData = async () => {
       try {
         setIsLoading(true);
-        const res = await axios.get(`https://api.exchangerate.host/latest`);
+        const res = await axios.get(
+          `https://api.exchangerate.host/latest`
+          // `ZAPROS`
+        );
         const { rates, success } = res.data;
 
         if (!success) throw new Error(success);

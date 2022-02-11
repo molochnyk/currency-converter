@@ -24,6 +24,7 @@ const Wrapper = styled.div`
 
 const WrapperText = styled.p`
   margin: 0;
+  font-size: 22px;
   text-align: center;
   color: ${({ theme }) => theme.errorText};
 
