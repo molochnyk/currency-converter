@@ -1,8 +1,4 @@
-import { US, EU, RU, PL, JP, GB } from 'country-flag-icons/react/3x2'
-
-export const ABBR_CURRENCIES = ["UAH", "RUB", "EUR", "USD", "PLN", "JPY", "GBP"];
-
-export const ABBR_CURRENCIES_LIST = ["USD", "EUR", "RUB", "PLN", "JPY", "GBP"];
+import { US, EU, RU, PL, JP, GB, CZ } from 'country-flag-icons/react/3x2';
 
 export const NATIONAL_CURRENCIES = {
   UAH: "UAH",
@@ -67,4 +63,11 @@ export const CURRENCIES_LISTS = [
     codeName: "GBP, Фунт",
     exRates: "31",
   },
+  {
+    icon: <CZ />,
+    code: "CZK",
+    name: "крона",
+    codeName: "CZK, крона",
+    exRates: "31",
+  }
 ]

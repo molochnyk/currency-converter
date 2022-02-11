@@ -26,3 +26,4 @@ yarn-error.log*
 todo.txt
 templteCode.txt
 /reference
+.vscode/

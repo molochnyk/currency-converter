@@ -31,19 +31,29 @@ const Button = styled.button`
     width: 40px;
     height: 40px;
     fill: ${({ theme }) => theme.btnMode};
+
+    transition: transform 200ms linear;
+  }
+
+  &:hover {
+    svg {
+      transform: rotate(30deg);
+    }
+  }
+
+  @media (max-width: 1200px) {
+    top: 15px;
   }
 
   @media (max-width: 992px) {
-    top: 10px;
+    top: 20px;
     svg {
-      width: 30px;
-      height: 30px;
+      width: 33px;
+      height: 33px;
     }
   }
 
   @media (max-width: 576px) {
-    top: 44px;
-    right: 32px;
   }
 `;
 

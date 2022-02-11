@@ -1,4 +1,4 @@
-import { NATIONALITIES_HUMAN_NAME } from "../constants/abbrСurrencies";
+import { NATIONALITIES_HUMAN_NAME } from "../constants/abbreviations";
 
 export const currencyNationalName = () => {
   const newArray = [];

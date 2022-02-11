@@ -97,7 +97,7 @@ const CurConvertHead = styled.div`
   margin-bottom: 35px;
 `;
 
-const CurConvertHeadSupTitle = styled.p`
+const CurConvertHeadSupTitle = styled.h1`
   margin: 10px 0 20px;
   font-size: 22px;
   text-align: center;

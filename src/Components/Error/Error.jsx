@@ -10,13 +10,22 @@ const Error = () => {
 };
 
 const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
+  width: max-content;
+
+  margin: 0 auto;
   padding: 6px 12px;
+
   border-radius: 3px;
   background: ${({ theme }) => theme.error};
 `;
 
 const WrapperText = styled.p`
   margin: 0;
+  font-size: 22px;
+  text-align: center;
   color: ${({ theme }) => theme.errorText};
 
   @media (max-width: 768px) {

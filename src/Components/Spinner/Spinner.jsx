@@ -18,7 +18,10 @@ const Spinner = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const StyledSpinner = styled.svg`
   width: 50px;
