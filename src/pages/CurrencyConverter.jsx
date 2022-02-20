@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styled from "styled-components";
+import { useLocalStorage } from "react-use";
 
 import LoadError from "../containers/LoadError";
 
@@ -8,12 +9,18 @@ import Input from "../Components/Field/Input";
 import Select from "../Components/Field/Select";
 import CopyToClip from "../Components/CopyToClip/CopyToClip";
 import ToggleCurrency from "../Components/ToggleCurrency/ToggleCurrency";
+import BtnLike from "../Components/BtnLike/BtnLike";
 
 import useFetchDebounce from "../hooks/useFetchDebounce";
 
+const DEFAULT_CURRENCY = {
+  from: "USD",
+  to: "UAH",
+};
+
 const CurrencyConverter = () => {
-  const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("UAH");
+  const [fromCurrency, setFromCurrency] = useState("");
+  const [toCurrency, setToCurrency] = useState("");
   const [inputAmount, setInputAmount] = useState("1");
 
   const [data, isLoading, isError] = useFetchDebounce(
@@ -22,15 +29,29 @@ const CurrencyConverter = () => {
     inputAmount
   );
 
+  const [valueCur] = useLocalStorage("curCurrency");
+
   const currencySwap = () => {
     setToCurrency(fromCurrency);
     setFromCurrency(toCurrency);
   };
 
+  useEffect(() => {
+    if (valueCur) {
+      setFromCurrency(valueCur[0]);
+      setToCurrency(valueCur[1]);
+    } else {
+      setFromCurrency(DEFAULT_CURRENCY.from);
+      setToCurrency(DEFAULT_CURRENCY.to);
+    }
+  }, [valueCur]);
+
   const dataResultView = data && data.toLocaleString();
 
   return (
     <CurConvertWrap errorStatus={isError ? "error" : "default"}>
+      <BtnLike fromCurrency={fromCurrency} toCurrency={toCurrency} />
+
       <CurConvertHead>
         <CurConvertHeadSupTitle>Курс Обмена</CurConvertHeadSupTitle>
         <CurConvertValue>
