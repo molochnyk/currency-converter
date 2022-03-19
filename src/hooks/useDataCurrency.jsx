@@ -9,7 +9,7 @@ const useDataCurrency = (fromCurrency, toCurrency, amount) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        if (amount) {
+        if (Boolean(parseInt(amount))) {
           setIsLoading(true);
           const res = await axios.get(
             `https://api.exchangerate.host/convert?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`
@@ -21,9 +21,10 @@ const useDataCurrency = (fromCurrency, toCurrency, amount) => {
 
           setData(result);
           setIsError(false);
-        } else {
-          setData(0);
         }
+        // else {
+        //   setData(0);
+        // }
       } catch (error) {
         setIsError(true);
       } finally {
