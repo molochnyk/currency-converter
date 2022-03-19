@@ -38,6 +38,14 @@ const CurrencyConverter = () => {
     setFromCurrency(toCurrency);
   }, [fromCurrency, toCurrency]);
 
+  const clearAmountInput = () => {
+    setInputAmount("1");
+  };
+
+  const changeInputAmount = (e) => {
+    setInputAmount(e.target.value);
+  };
+
   const checkLocalStoragePair = (value) => {
     if (value) {
       setFromCurrency(JSON.parse(value)[0]);
@@ -84,8 +92,8 @@ const CurrencyConverter = () => {
       <CurConvertInpWrapper>
         <Input
           inputAmount={inputAmount}
-          onChangeAmount={(e) => setInputAmount(e.target.value)}
-          onClearAmount={() => setInputAmount("")}
+          onChangeAmount={changeInputAmount}
+          onClearAmount={clearAmountInput}
         />
       </CurConvertInpWrapper>
 
