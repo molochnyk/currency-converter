@@ -22,7 +22,7 @@ const Input = ({ inputAmount, onChangeAmount, onClearAmount }) => {
           onChange={onChangeAmount}
         />
 
-        {inputAmount && (
+        {inputAmount > 1 && (
           <InputBtnClear onClick={onClearAmount}>
             <FiDelete />
           </InputBtnClear>

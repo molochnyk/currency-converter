@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import styled from "styled-components";
 
@@ -8,13 +8,19 @@ import Input from "../Components/Field/Input";
 import Select from "../Components/Field/Select";
 import CopyToClip from "../Components/CopyToClip/CopyToClip";
 import ToggleCurrency from "../Components/ToggleCurrency/ToggleCurrency";
+import ToggleFavorites from "../Components/ToggleFavorites/ToggleFavorites";
 
 import useFetchDebounce from "../hooks/useFetchDebounce";
+import useFavoritesCurrency from "../hooks/useFavoritesCurrency";
+
+import { DEFAULT_CURRENCY } from "../constants/defaultCurrency";
+
+const DEFAULT_AMOUNT = "1";
 
 const CurrencyConverter = () => {
-  const [fromCurrency, setFromCurrency] = useState("USD");
-  const [toCurrency, setToCurrency] = useState("UAH");
-  const [inputAmount, setInputAmount] = useState("1");
+  const [fromCurrency, setFromCurrency] = useState("");
+  const [toCurrency, setToCurrency] = useState("");
+  const [inputAmount, setInputAmount] = useState(DEFAULT_AMOUNT);
 
   const [data, isLoading, isError] = useFetchDebounce(
     fromCurrency,
@@ -22,15 +28,48 @@ const CurrencyConverter = () => {
     inputAmount
   );
 
-  const currencySwap = () => {
+  const [favorites, toggleFavorites] = useFavoritesCurrency(
+    fromCurrency,
+    toCurrency
+  );
+
+  const currencySwap = useCallback(() => {
     setToCurrency(fromCurrency);
     setFromCurrency(toCurrency);
+  }, [fromCurrency, toCurrency]);
+
+  const clearAmountInput = () => {
+    setInputAmount("1");
   };
+
+  const changeInputAmount = (e) => {
+    setInputAmount(e.target.value);
+  };
+
+  const checkLocalStoragePair = (value) => {
+    if (value) {
+      setFromCurrency(JSON.parse(value)[0]);
+      setToCurrency(JSON.parse(value)[1]);
+    } else {
+      setFromCurrency(DEFAULT_CURRENCY.from);
+      setToCurrency(DEFAULT_CURRENCY.to);
+    }
+  };
+
+  useEffect(() => {
+    const localPair = window.localStorage.getItem("curPair");
+    checkLocalStoragePair(localPair);
+  }, []);
 
   const dataResultView = data && data.toLocaleString();
 
   return (
     <CurConvertWrap errorStatus={isError ? "error" : "default"}>
+      <ToggleFavorites
+        favorites={favorites}
+        toggleFavorites={toggleFavorites}
+      />
+
       <CurConvertHead>
         <CurConvertHeadSupTitle>Курс Обмена</CurConvertHeadSupTitle>
         <CurConvertValue>
@@ -53,8 +92,8 @@ const CurrencyConverter = () => {
       <CurConvertInpWrapper>
         <Input
           inputAmount={inputAmount}
-          onChangeAmount={(e) => setInputAmount(e.target.value)}
-          onClearAmount={() => setInputAmount("")}
+          onChangeAmount={changeInputAmount}
+          onClearAmount={clearAmountInput}
         />
       </CurConvertInpWrapper>
 
