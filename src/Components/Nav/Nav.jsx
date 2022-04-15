@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const links = [
-  { name: "Главная", path: "/" },
-  { name: "Список", path: "/list-currencies" },
+  { name: "Конвертер", path: "/" },
+  { name: "Валюты", path: "/list-currencies" },
 ];
 
 const Nav = () => {

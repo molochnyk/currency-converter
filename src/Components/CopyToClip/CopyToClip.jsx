@@ -49,7 +49,13 @@ const CopyToClip = ({ value, children }) => {
 };
 
 const Wrapper = styled.div`
-  display: inline-block;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 50px;
 
   cursor: pointer;
 `;
