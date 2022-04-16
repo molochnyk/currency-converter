@@ -101,7 +101,7 @@ const NavigateListItm = styled.li`
 
   @media (max-width: 1200px) {
     margin-bottom: 0;
-    margin-right: 20px;
+    margin-right: 30px;
   }
 `;
 

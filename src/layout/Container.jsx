@@ -25,8 +25,16 @@ const CurConvertWrap = styled.div`
     props.errorStatus === "error" ? props.theme.error : props.theme.default};
   background: ${({ theme }) => theme.main};
 
+  @media (max-width: 768px) {
+    padding: 30px 30px 45px;
+  }
+
   @media (max-width: 576px) {
     padding: 22px 32px 38px;
+  }
+
+  @media (max-width: 400px) {
+    padding: 22px 26px 38px;
   }
 `;
 

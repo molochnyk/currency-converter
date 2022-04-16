@@ -19,8 +19,8 @@ import { DEFAULT_CURRENCY } from "../constants/defaultCurrency";
 const DEFAULT_AMOUNT = "1";
 
 const CurrencyConverter = () => {
-  const [fromCurrency, setFromCurrency] = useState("");
-  const [toCurrency, setToCurrency] = useState("");
+  const [fromCurrency, setFromCurrency] = useState(DEFAULT_CURRENCY.from); // or ""
+  const [toCurrency, setToCurrency] = useState(DEFAULT_CURRENCY.to); // or ""
   const [inputAmount, setInputAmount] = useState(DEFAULT_AMOUNT);
 
   const [data, isLoading, isError] = useFetchDebounce(
@@ -126,6 +126,10 @@ const CurConvertValue = styled.div`
   align-items: center;
 
   margin: 0 auto;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
 `;
 
 const CurConvertValueFrom = styled.div`
@@ -136,6 +140,13 @@ const CurConvertValueFrom = styled.div`
   align-items: center;
 
   width: 48%;
+
+  word-break: break-all;
+
+  @media (max-width: 576px) {
+    flex-direction: row;
+    width: 100%;
+  }
 `;
 
 const CurConvertLetter = styled.div`
@@ -155,6 +166,31 @@ const CurConvertLetter = styled.div`
 
   background: #f9fafb;
   color: ${({ theme }) => theme.textLetter};
+
+  @media (max-width: 576px) {
+    margin-bottom: 0;
+    margin-right: 25px;
+    min-width: 90px;
+    width: 90px;
+    height: 45px;
+    font-size: 22px;
+  }
+
+  @media (max-width: 480px) {
+    margin-right: 20px;
+    min-width: 60px;
+    width: 60px;
+    height: 45px;
+    font-size: 20px;
+  }
+
+  @media (max-width: 400px) {
+    margin-right: 12px;
+    min-width: 50px;
+    width: 50px;
+    height: 40px;
+    font-size: 18px;
+  }
 `;
 
 const CurConvertNumber = styled.div`
@@ -166,6 +202,10 @@ const CurConvertNumber = styled.div`
   color: ${({ theme }) => theme.text};
 
   height: 50px;
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+  }
 `;
 
 const CurConvertValueDelimiter = styled.div`
@@ -188,6 +228,29 @@ const CurConvertValueDelimiter = styled.div`
       rgba(215, 220, 228, 0) 100%
     );
   }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    height: 50px;
+
+    &::before {
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        rgba(215, 220, 228, 0) 0%,
+        #d7dce4 52.08%,
+        rgba(215, 220, 228, 0) 100%
+      );
+    }
+  }
+
+  @media (max-width: 480px) {
+    height: 38px;
+  }
 `;
 
 const CurConvertValueTo = styled.div`
@@ -198,6 +261,13 @@ const CurConvertValueTo = styled.div`
   align-items: center;
 
   width: 48%;
+
+  word-break: break-all;
+
+  @media (max-width: 576px) {
+    flex-direction: row;
+    width: 100%;
+  }
 `;
 
 const CurConvertInpWrapper = styled.div`
