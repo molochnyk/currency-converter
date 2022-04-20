@@ -20,6 +20,7 @@ const Input = ({ inputAmount, onChangeAmount, onClearAmount }) => {
           allowNegative={false}
           value={inputAmount}
           onChange={onChangeAmount}
+          isAllowed={({ floatValue }) => floatValue <= 9999999999}
         />
 
         {inputAmount > 1 && (
@@ -85,6 +86,10 @@ const InputField = styled(NumberFormat)`
   }
 
   @media (max-width: 768px) {
+  }
+
+  @media (max-width: 480px) {
+    height: 48px;
   }
 `;
 

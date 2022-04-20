@@ -1,7 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
-  *{
+  *, 
+  *:after, 
+  *:before{
     box-sizing: border-box;
   }
 
@@ -27,6 +29,7 @@ export const lightTheme = {
   tableBorder: "#eeeeee",
 
   text: "#111",
+  textLetter: "#111",
 
   error: "#fa5c5c",
   errorText: "#fff",
@@ -53,6 +56,7 @@ export const darkTheme = {
   tableBorder: "#eeeeee94",
 
   text: "#EDEDED",
+  textLetter: "#111",
 
   error: "#DA0037",
   errorText: "#fff",

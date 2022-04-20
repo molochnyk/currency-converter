@@ -53,7 +53,12 @@ const Button = styled.button`
     }
   }
 
+  @media (max-width: 768px) {
+    right: 38px;
+  }
+
   @media (max-width: 576px) {
+    right: 18px;
   }
 `;
 
