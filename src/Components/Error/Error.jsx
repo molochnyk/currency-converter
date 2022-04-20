@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Error = () => {
   return (
     <Wrapper>
-      <WrapperText>Упс, что то пошло не так :(</WrapperText>
+      <WrapperText>Упс, что то пошло не так</WrapperText>
     </Wrapper>
   );
 };
@@ -26,21 +26,14 @@ const WrapperText = styled.p`
   margin: 0;
   font-size: 22px;
   text-align: center;
+  word-break: break-word;
   color: ${({ theme }) => theme.errorText};
 
-  @media (max-width: 768px) {
-    font-size: 20px;
-  }
-
-  @media (max-width: 576px) {
+  @media (max-width: 992px) {
     font-size: 18px;
   }
 
-  @media (max-width: 375px) {
-    font-size: 16px;
-  }
-
-  @media (max-width: 350px) {
+  @media (max-width: 768px) {
     font-size: 14px;
   }
 `;

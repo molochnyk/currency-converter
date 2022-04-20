@@ -84,7 +84,7 @@ const CurrencyConverter = () => {
             <CurConvertLetter>{toCurrency}</CurConvertLetter>
             <LoadError isLoading={isLoading} isError={isError}>
               <CopyToClip value={dataOutputView}>
-                <AiOutlineCopy />
+                <CopyToClipIcon />
                 <CurConvertNumber>{dataOutputView}</CurConvertNumber>
               </CopyToClip>
             </LoadError>
@@ -125,7 +125,7 @@ const CurConvertValue = styled.div`
   position: relative;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 
   margin: 0 auto;
 
@@ -266,26 +266,26 @@ const CurConvertValueTo = styled.div`
 
   word-break: break-all;
 
-  svg {
-    position: absolute;
-    right: -10px;
-    top: -5px;
-    width: 14px;
-    height: 14px;
-
-    pointer-events: none;
-  }
-
   @media (max-width: 576px) {
     flex-direction: row;
     width: 100%;
+  }
+`;
 
-    svg {
-      right: -8px;
-      top: -4px;
-      width: 10px;
-      height: 10px;
-    }
+const CopyToClipIcon = styled(AiOutlineCopy)`
+  position: absolute;
+  right: -10px;
+  top: -5px;
+  width: 14px;
+  height: 14px;
+
+  pointer-events: none;
+
+  @media (max-width: 576px) {
+    right: -7px;
+    top: 1px;
+    width: 10px;
+    height: 10px;
   }
 `;
 
