@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
+import { AiOutlineCopy } from "react-icons/ai";
 
 import styled from "styled-components";
 
@@ -83,6 +84,7 @@ const CurrencyConverter = () => {
             <CurConvertLetter>{toCurrency}</CurConvertLetter>
             <LoadError isLoading={isLoading} isError={isError}>
               <CopyToClip value={dataOutputView}>
+                <AiOutlineCopy />
                 <CurConvertNumber>{dataOutputView}</CurConvertNumber>
               </CopyToClip>
             </LoadError>
@@ -177,7 +179,7 @@ const CurConvertLetter = styled.div`
   }
 
   @media (max-width: 480px) {
-    margin-right: 20px;
+    margin-right: 15px;
     min-width: 60px;
     width: 60px;
     height: 45px;
@@ -204,7 +206,7 @@ const CurConvertNumber = styled.div`
   height: 50px;
 
   @media (max-width: 480px) {
-    font-size: 24px;
+    font-size: 22px;
   }
 `;
 
@@ -264,9 +266,26 @@ const CurConvertValueTo = styled.div`
 
   word-break: break-all;
 
+  svg {
+    position: absolute;
+    right: -10px;
+    top: -5px;
+    width: 14px;
+    height: 14px;
+
+    pointer-events: none;
+  }
+
   @media (max-width: 576px) {
     flex-direction: row;
     width: 100%;
+
+    svg {
+      right: -8px;
+      top: -4px;
+      width: 10px;
+      height: 10px;
+    }
   }
 `;
 
