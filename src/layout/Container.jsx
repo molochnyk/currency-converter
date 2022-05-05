@@ -43,7 +43,7 @@ const CurConvertHeadSupTitle = styled.h1`
   font-size: 24px;
   text-align: center;
   color: ${({ theme }) => theme.text};
-  font-weight: 100;
+  font-weight: 600;
 `;
 
 export default Container;
