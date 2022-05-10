@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
 import { FiDelete } from "react-icons/fi";
-
+import { onlyNumber } from "../../helpers/onlyNumber";
 import "focus-visible/dist/focus-visible.js";
 
 const Input = ({ inputAmount, onChangeAmount, onClearAmount }) => {
@@ -22,13 +22,13 @@ const Input = ({ inputAmount, onChangeAmount, onClearAmount }) => {
           placeholder="сколько денег 100"
           autoComplete={"off"}
           allowNegative={false}
-          // thousandSeparator={true}
+          thousandSeparator={true}
           value={inputAmount}
           onChange={onChangeAmount}
           isAllowed={withValueCap}
         />
 
-        {inputAmount > 1 && (
+        {onlyNumber(inputAmount) > 1 && (
           <InputBtnClear onClick={onClearAmount}>
             <FiDelete />
           </InputBtnClear>

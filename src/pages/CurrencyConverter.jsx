@@ -16,6 +16,7 @@ import useFetchDebounce from "../hooks/useFetchDebounce";
 import useFavoritesCurrency from "../hooks/useFavoritesCurrency";
 
 import { DEFAULT_CURRENCY } from "../constants/defaultCurrency";
+import { onlyNumber } from "../helpers/onlyNumber";
 
 const DEFAULT_AMOUNT = "1";
 
@@ -27,7 +28,7 @@ const CurrencyConverter = () => {
   const [data, isLoading, isError] = useFetchDebounce(
     fromCurrency,
     toCurrency,
-    inputAmount
+    onlyNumber(inputAmount)
   );
 
   const [favorites, toggleFavorites] = useFavoritesCurrency(
