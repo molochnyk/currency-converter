@@ -22,9 +22,6 @@ const useDataCurrency = (fromCurrency, toCurrency, amount) => {
           setData(result);
           setIsError(false);
         }
-        // else {
-        //   setData(0);
-        // }
       } catch (error) {
         setIsError(true);
       } finally {

@@ -1,14 +1,18 @@
 import React from "react";
-
-import { FiDelete } from "react-icons/fi";
-
+import styled from "styled-components";
 import NumberFormat from "react-number-format";
+import { FiDelete } from "react-icons/fi";
 
 import "focus-visible/dist/focus-visible.js";
 
-import styled from "styled-components";
-
 const Input = ({ inputAmount, onChangeAmount, onClearAmount }) => {
+  const MAX_VAL = 9999999999;
+  const withValueCap = (inputObj) => {
+    const { value } = inputObj;
+    if (value <= MAX_VAL) return true;
+    return false;
+  };
+
   return (
     <InputWrap>
       <InputLabel>Количество</InputLabel>
@@ -18,9 +22,10 @@ const Input = ({ inputAmount, onChangeAmount, onClearAmount }) => {
           placeholder="сколько денег 100"
           autoComplete={"off"}
           allowNegative={false}
+          // thousandSeparator={true}
           value={inputAmount}
           onChange={onChangeAmount}
-          isAllowed={({ floatValue }) => floatValue <= 9999999999}
+          isAllowed={withValueCap}
         />
 
         {inputAmount > 1 && (

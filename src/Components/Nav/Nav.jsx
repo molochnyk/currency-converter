@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 const links = [
   { name: "Конвертер", path: "/" },
   { name: "Валюты", path: "/list-currencies" },
+  { name: "Крипто", path: "/crypto" },
 ];
 
 const Nav = () => {
