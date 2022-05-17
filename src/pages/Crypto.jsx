@@ -21,12 +21,14 @@ const Crypto = () => {
   return (
     <Container isErrorStatus={crypto.isError} title="Криптовалюты">
       <CryptoMain>
+        <CryptoMainHead>
+          <TittleHead>Топ 10 крипто в мире</TittleHead>
+          <LinkSeeAll to="/crypto-all">Посмотреть все</LinkSeeAll>
+        </CryptoMainHead>
         <LoadError isLoading={crypto.isLoading} isError={crypto.isError}>
-          <CryptoMainHead>
-            <TittleHead>Топ 10 крипто в мире</TittleHead>
-            <LinkSeeAll to="/crypto-all">Посмотреть все</LinkSeeAll>
-          </CryptoMainHead>
-          <TableCrypto data={crypto.cryptoList} />
+          <TableCryptoWrap>
+            <TableCrypto data={crypto.cryptoList} />
+          </TableCryptoWrap>
         </LoadError>
       </CryptoMain>
     </Container>
@@ -40,6 +42,10 @@ const CryptoMainHead = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 425px) {
+    flex-direction: column;
+  }
 `;
 
 const TittleHead = styled.h3`
@@ -47,6 +53,44 @@ const TittleHead = styled.h3`
   font-size: 18px;
   font-weight: 100;
   color: ${({ theme }) => theme.text};
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 425px) {
+    margin-bottom: 12px;
+  }
+`;
+
+const TableCryptoWrap = styled.div`
+  @media (max-width: 576px) {
+    overflow-x: auto;
+
+    table {
+      width: 590px;
+
+      tr {
+        th {
+          &:nth-child(1) {
+            width: 38px;
+          }
+          &:nth-child(2) {
+            width: 160px;
+          }
+          &:nth-child(3) {
+            width: 100px;
+          }
+          &:nth-child(4) {
+            width: 100px;
+          }
+          &:nth-child(5) {
+            width: 60px;
+          }
+        }
+      }
+    }
+  }
 `;
 
 const LinkSeeAll = styled(Link)`
@@ -70,6 +114,15 @@ const LinkSeeAll = styled(Link)`
     &::before {
       opacity: 0;
     }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 425px) {
+    font-size: 13px;
+    align-self: flex-end;
   }
 `;
 

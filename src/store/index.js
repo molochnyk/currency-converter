@@ -6,4 +6,8 @@ export const store = configureStore({
   reducer: {
     crypto: cryptoReducer
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    immutableCheck: false,
+    serializableCheck: false,
+  })
 })
