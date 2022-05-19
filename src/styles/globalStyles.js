@@ -40,6 +40,9 @@ export const lightTheme = {
   text: "#111",
   textLetter: "#111",
 
+  downColor: "#ea3943",
+  upColor: "#16c784",
+
   error: "#fa5c5c",
   errorText: "#fff",
   default: "#2f98fa",
@@ -67,6 +70,9 @@ export const darkTheme = {
 
   text: "#EDEDED",
   textLetter: "#111",
+
+  downColor: "#ea3943",
+  upColor: "#16c784",
 
   error: "#DA0037",
   errorText: "#fff",

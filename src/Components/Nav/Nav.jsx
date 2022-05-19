@@ -92,6 +92,8 @@ const Navigate = styled.nav`
   left: 50px;
   top: 20px;
 
+  z-index: 1;
+
   @media (max-width: 1200px) {
     position: relative;
     left: 0px;

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
+
 const baseUrl = 'https://api.coingecko.com/api/v3';
 
 export const fetchCrypto = createAsyncThunk('crypto/fetchCrypto', async (count, {rejectWithValue }) => {
@@ -61,7 +62,5 @@ export const cryptoSlice = createSlice({
     }
   }
 })
-
-export const { onSearchCrypto } = cryptoSlice.actions;
 
 export default cryptoSlice.reducer;
