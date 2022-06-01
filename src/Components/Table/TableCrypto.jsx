@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import millify from "millify";
 import styled from "styled-components";
+import { numberWithCommas } from "../../helpers/numberWithCommas";
 
 const titleTable = [
   {
@@ -29,81 +30,90 @@ const titleTable = [
 const TableCrypto = ({ data }) => {
   return (
     <Table>
-      <thead>
-        <tr>
+      <THead>
+        <TTR>
           {titleTable.map((itm) => {
-            return <th key={itm.accessor}>{itm.title}</th>;
+            return <TTH key={itm.accessor}>{itm.title}</TTH>;
           })}
-        </tr>
-      </thead>
-      <tbody>
+        </TTR>
+      </THead>
+      <TBody>
         {data.map((itm, i) => {
+          const profit = itm.market_data.price_change_percentage_24h >= 0;
+
           return (
-            <tr key={itm.id}>
-              <td>{i + 1}</td>
-              <td>
+            <TTR key={itm.id}>
+              <TTD>{i + 1}</TTD>
+              <TTD>
                 <img src={itm.image.thumb} alt={itm.name} />
                 <div>
                   <div>{itm.name}</div>
                   <div>{itm.symbol}</div>
                 </div>
-              </td>
-              <td>$ {millify(itm.market_data.current_price.usd)}</td>
-              <td>$ {millify(itm.market_data.market_cap.usd)}</td>
-              <td>{millify(itm.market_data.price_change_percentage_24h)}</td>
-            </tr>
+              </TTD>
+              <TTD>$ {millify(itm.market_data.current_price.usd)}</TTD>
+              <TTD>$ {millify(itm.market_data.market_cap.usd)}</TTD>
+              <TTD profit={!!profit}>
+                {profit && "+"}
+                {numberWithCommas(
+                  itm.market_data.price_change_percentage_24h.toFixed(2)
+                )}
+              </TTD>
+            </TTR>
           );
         })}
-      </tbody>
+      </TBody>
     </Table>
   );
 };
 
 const Table = styled.table`
   width: 100%;
-
   border-spacing: 0;
+`;
 
-  thead {
-    background: ${({ theme }) => theme.tableThead};
-  }
+const THead = styled.thead`
+  background: ${({ theme }) => theme.tableThead};
+`;
 
-  tr {
-  }
+const TTR = styled.tr``;
 
-  th {
-    text-align: left;
-    padding: 8px;
-    color: ${({ theme }) => theme.text};
-  }
+const TTH = styled.th`
+  text-align: left;
+  padding: 8px;
+  color: ${({ theme }) => theme.text};
+`;
 
-  tbody {
-  }
+const TBody = styled.tbody``;
 
-  tr {
-  }
+const TTD = styled.td`
+  padding: 10px 8px;
+  border-bottom: 1px solid ${({ theme }) => theme.tableBorder};
 
-  td {
-    padding: 10px 8px;
-    border-bottom: 1px solid ${({ theme }) => theme.tableBorder};
+  &:nth-child(2) {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 10px;
+    }
 
-    &:nth-child(2) {
-      display: flex;
-      align-items: center;
-      img {
-        margin-right: 10px;
+    div {
+      &:nth-child(1) {
+        margin-bottom: 2px;
+        font-size: 18px;
       }
-
-      div {
-        &:nth-child(1) {
-          margin-bottom: 2px;
-          font-size: 18px;
-        }
-        &:nth-child(2) {
-          font-size: 13px;
-        }
+      &:nth-child(2) {
+        font-size: 13px;
       }
     }
+  }
+
+  &:nth-child(5) {
+  }
+
+  &:nth-child(5) {
+    color: ${({ profit, theme }) =>
+      profit > 0 ? theme.upColor : theme.downColor};
   }
 `;
 
