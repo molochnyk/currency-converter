@@ -76,7 +76,7 @@ const Nav = () => {
         <ul>
           {links.map((link) => (
             <li key={link.path}>
-              <NavLink to={link.path}>
+              <NavLink to={link.path} onClick={handleCloseMenu}>
                 <span>{link.name}</span>
               </NavLink>
             </li>
