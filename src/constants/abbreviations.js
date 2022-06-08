@@ -1,12 +1,13 @@
-import { US, EU, RU, PL, JP, GB, CZ } from 'country-flag-icons/react/3x2';
+import { US, EU, RU, PL, JP, GB, CZ, CN, TR } from 'country-flag-icons/react/3x2';
 
 export const NATIONAL_CURRENCIES = {
   UAH: "UAH",
-  RUB: "RUB", 
-  EUR: "EUR", 
-  USD: "USD", 
-  PLN: "PLN", 
-  JPY: "JPY", 
+  RUB: "RUB",
+  EUR: "EUR",
+  USD: "USD",
+  PLN: "PLN",
+  TRY: "TRY",
+  JPY: "JPY",
   GBP: "GBP"
 }
 
@@ -16,6 +17,7 @@ export const NATIONALITIES_HUMAN_NAME = {
   [NATIONAL_CURRENCIES.EUR]: "Europe", 
   [NATIONAL_CURRENCIES.USD]: "United States", 
   [NATIONAL_CURRENCIES.PLN]: "Poland", 
+  [NATIONAL_CURRENCIES.TRY]: "Turkey", 
   [NATIONAL_CURRENCIES.JPY]: "Japan", 
   [NATIONAL_CURRENCIES.GBP]: "United Kingdom", 
 }
@@ -50,6 +52,13 @@ export const CURRENCIES_LISTS = [
     exRates: "31",
   },
   {
+    icon: <TR />,
+    code: "TRY",
+    name: "лира",
+    codeName: "TRY, Лира",
+    exRates: "31",
+  },
+  {
     icon: <JP />,
     code: "JPY",
     name: "иена",
@@ -67,7 +76,14 @@ export const CURRENCIES_LISTS = [
     icon: <CZ />,
     code: "CZK",
     name: "крона",
-    codeName: "CZK, крона",
+    codeName: "CZK, Крона",
+    exRates: "31",
+  },
+  {
+    icon: <CN />,
+    code: "CNY",
+    name: "	Юань",
+    codeName: "CNY, 	Юань",
     exRates: "31",
   }
 ]
