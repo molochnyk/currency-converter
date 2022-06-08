@@ -5,6 +5,7 @@ import CurrencyConverter from "./pages/CurrencyConverter";
 import CurrencyList from "./pages/CurrencyList";
 import Crypto from "./pages/Crypto";
 import CryptoAll from "./pages/CryptoAll";
+
 import NoMatch from "./pages/NoMatch";
 
 const routes = () => {
