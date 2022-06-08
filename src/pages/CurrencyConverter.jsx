@@ -7,6 +7,7 @@ import LoadError from "../containers/LoadError";
 
 import Input from "../Components/Field/Input";
 import Select from "../Components/Field/Select";
+import FastPrice from "../Components/FastPrice/FastPrice";
 import CopyToClip from "../Components/CopyToClip/CopyToClip";
 import ToggleCurrency from "../Components/ToggleCurrency/ToggleCurrency";
 import ToggleFavorites from "../Components/ToggleFavorites/ToggleFavorites";
@@ -19,6 +20,21 @@ import { DEFAULT_CURRENCY } from "../constants/defaultCurrency";
 import { onlyNumber } from "../helpers/onlyNumber";
 
 const DEFAULT_AMOUNT = "1";
+
+const AmountFast = [
+  {
+    price: "1",
+  },
+  {
+    price: "10",
+  },
+  {
+    price: "100",
+  },
+  {
+    price: "1000",
+  },
+];
 
 const CurrencyConverter = () => {
   const [fromCurrency, setFromCurrency] = useState(DEFAULT_CURRENCY.from); // or ""
@@ -47,6 +63,10 @@ const CurrencyConverter = () => {
 
   const changeInputAmount = (e) => {
     setInputAmount(e.target.value);
+  };
+
+  const onAmountFast = (amount) => {
+    setInputAmount(amount);
   };
 
   const checkLocalStoragePair = (value) => {
@@ -93,13 +113,16 @@ const CurrencyConverter = () => {
         </CurConvertValue>
       </CurConvertHead>
 
-      <CurConvertInpWrapper>
-        <Input
-          inputAmount={inputAmount}
-          onChangeAmount={changeInputAmount}
-          onClearAmount={clearAmountInput}
-        />
-      </CurConvertInpWrapper>
+      <CurConvertInpPriceWrapper>
+        <CurConvertInpWrapper>
+          <Input
+            inputAmount={inputAmount}
+            onChangeAmount={changeInputAmount}
+            onClearAmount={clearAmountInput}
+          />
+        </CurConvertInpWrapper>
+        <FastPrice dataAmount={AmountFast} onAmountFast={onAmountFast} />
+      </CurConvertInpPriceWrapper>
 
       <CurConvertSelectWrapper>
         <Select
@@ -290,8 +313,32 @@ const CopyToClipIcon = styled(AiOutlineCopy)`
   }
 `;
 
-const CurConvertInpWrapper = styled.div`
+const CurConvertInpPriceWrapper = styled.div`
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+`;
+
+const CurConvertInpWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-basis: 50%;
+  margin-right: 50px;
+
+  @media (max-width: 768px) {
+    margin-right: 25px;
+  }
+
+  @media (max-width: 576px) {
+    flex-basis: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
+    width: 100%;
+  }
 `;
 
 const CurConvertSelectWrapper = styled.div`

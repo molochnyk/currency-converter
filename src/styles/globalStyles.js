@@ -37,6 +37,9 @@ export const lightTheme = {
   tableThead: "#eeeeee",
   tableBorder: "#eeeeee",
 
+  greyLight: "#f9fafbd8",
+  greyLightHover: "#e6e6e6d7",
+
   text: "#111",
   textLetter: "#111",
 
@@ -67,6 +70,9 @@ export const darkTheme = {
 
   tableThead: "#00000049",
   tableBorder: "#eeeeee94",
+
+  greyLight: "#ffff",
+  greyLightHover: "#e6e6e6",
 
   text: "#EDEDED",
   textLetter: "#111",

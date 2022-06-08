@@ -42,6 +42,7 @@ const InputWrap = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 const InputLabel = styled.p`
