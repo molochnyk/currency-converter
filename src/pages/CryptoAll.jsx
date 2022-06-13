@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import ReactPaginate from "react-paginate";
+
 import styled from "styled-components";
 
 import TableCrypto from "../Components/Table/TableCrypto";
@@ -13,6 +15,11 @@ import { fetchCryptoAll } from "../store/features/cryptoSlice";
 
 const CryptoAll = () => {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 6;
 
   const crypto = useSelector((state) => state.crypto);
   const dispatch = useDispatch();
@@ -32,6 +39,17 @@ const CryptoAll = () => {
   const onClearInput = () => {
     setSearchTerm("");
   };
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % filteredСrypto.length;
+    setItemOffset(newOffset);
+  };
+
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(filteredСrypto.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(filteredСrypto.length / itemsPerPage));
+  }, [itemOffset, itemsPerPage, filteredСrypto]);
 
   useEffect(() => {
     dispatch(fetchCryptoAll());
@@ -59,8 +77,18 @@ const CryptoAll = () => {
         </CryptoFilterBlock>
         <LoadError isLoading={crypto.isLoading} isError={crypto.isError}>
           <TableCryptoWrap>
-            <TableCrypto data={filteredСrypto} />
+            <TableCrypto data={currentItems} />
           </TableCryptoWrap>
+          <Pagination
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            pageCount={pageCount}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+          />
         </LoadError>
       </CryptoMain>
     </Container>
@@ -118,6 +146,7 @@ const CryptoFilterSearch = styled.div`
 `;
 
 const TableCryptoWrap = styled.div`
+  margin-bottom: 30px;
   @media (max-width: 576px) {
     overflow-x: auto;
 
@@ -143,6 +172,84 @@ const TableCryptoWrap = styled.div`
           }
         }
       }
+    }
+  }
+`;
+
+const Pagination = styled(ReactPaginate)`
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+
+    margin: 0 5px;
+
+    border-radius: 5px;
+
+    background: ${({ theme }) => theme.greyLight};
+    color: ${({ theme }) => theme.textLetter};
+
+    cursor: pointer;
+
+    transition: background 250ms ease-in;
+
+    &:hover {
+      background: ${({ theme }) => theme.greyLightHover};
+    }
+
+    &.previous {
+    }
+
+    &.next {
+    }
+
+    &.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    &.selected {
+      background: ${({ theme }) => theme.default};
+      color: #fff;
+    }
+
+    @media (max-width: 480px) {
+      display: none;
+
+      &.previous,
+      &.next {
+        display: flex;
+        margin: 0 20px;
+      }
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    @media (max-width: 576px) {
+      width: 22px;
+      height: 22px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      width: 50px;
+      height: 50px;
+      font-size: 18px;
     }
   }
 `;
