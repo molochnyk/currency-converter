@@ -1,11 +1,12 @@
-import React from "react";
-import styled from "styled-components";
-import NumberFormat from "react-number-format";
-import { FiDelete } from "react-icons/fi";
-import { onlyNumber } from "../../helpers/onlyNumber";
-import "focus-visible/dist/focus-visible.js";
+import React, { forwardRef } from 'react';
+import styled from 'styled-components';
+import NumberFormat from 'react-number-format';
+import { FiDelete } from 'react-icons/fi';
+import { onlyNumber } from '../../helpers/onlyNumber';
+import 'focus-visible/dist/focus-visible.js';
 
-const Input = ({ inputAmount, onChangeAmount, onClearAmount }) => {
+const Input = forwardRef((props, ref) => {
+  const { inputAmount, onChangeAmount, onClearAmount } = props;
   const MAX_VAL = 9999999999;
   const withValueCap = (inputObj) => {
     const { value } = inputObj;
@@ -20,15 +21,16 @@ const Input = ({ inputAmount, onChangeAmount, onClearAmount }) => {
         <InputField
           name="amount"
           placeholder="сколько денег 100"
-          autoComplete={"off"}
+          autoComplete={'off'}
           allowNegative={false}
           thousandSeparator={true}
           value={inputAmount}
           onChange={onChangeAmount}
           isAllowed={withValueCap}
+          getInputRef={ref}
         />
 
-        {onlyNumber(inputAmount) > 1 && (
+        {onlyNumber(inputAmount) > 0 && (
           <InputBtnClear onClick={onClearAmount}>
             <FiDelete />
           </InputBtnClear>
@@ -36,7 +38,7 @@ const Input = ({ inputAmount, onChangeAmount, onClearAmount }) => {
       </InputFildWrap>
     </InputWrap>
   );
-};
+});
 
 const InputWrap = styled.div`
   position: relative;
