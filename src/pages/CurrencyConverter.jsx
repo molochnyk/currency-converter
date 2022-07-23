@@ -1,38 +1,38 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { AiOutlineCopy } from "react-icons/ai";
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { AiOutlineCopy } from 'react-icons/ai';
 
-import styled from "styled-components";
+import styled from 'styled-components';
 
-import LoadError from "../containers/LoadError";
+import LoadError from '../containers/LoadError';
 
-import Input from "../Components/Field/Input";
-import Select from "../Components/Field/Select";
-import FastPrice from "../Components/FastPrice/FastPrice";
-import CopyToClip from "../Components/CopyToClip/CopyToClip";
-import ToggleCurrency from "../Components/ToggleCurrency/ToggleCurrency";
-import ToggleFavorites from "../Components/ToggleFavorites/ToggleFavorites";
-import Container from "../layout/Container";
+import Input from '../Components/Field/Input';
+import Select from '../Components/Field/Select';
+import FastPrice from '../Components/FastPrice/FastPrice';
+import CopyToClip from '../Components/CopyToClip/CopyToClip';
+import ToggleCurrency from '../Components/ToggleCurrency/ToggleCurrency';
+import ToggleFavorites from '../Components/ToggleFavorites/ToggleFavorites';
+import Container from '../layout/Container';
 
-import useFetchDebounce from "../hooks/useFetchDebounce";
-import useFavoritesCurrency from "../hooks/useFavoritesCurrency";
+import useFetchDebounce from '../hooks/useFetchDebounce';
+import useFavoritesCurrency from '../hooks/useFavoritesCurrency';
 
-import { DEFAULT_CURRENCY } from "../constants/defaultCurrency";
-import { onlyNumber } from "../helpers/onlyNumber";
+import { DEFAULT_CURRENCY } from '../constants/defaultCurrency';
+import { onlyNumber } from '../helpers/onlyNumber';
 
-const DEFAULT_AMOUNT = "1";
+const DEFAULT_AMOUNT = '1';
 
 const AmountFast = [
   {
-    price: "1",
+    price: '1',
   },
   {
-    price: "10",
+    price: '10',
   },
   {
-    price: "100",
+    price: '100',
   },
   {
-    price: "1000",
+    price: '1000',
   },
 ];
 
@@ -41,16 +41,15 @@ const CurrencyConverter = () => {
   const [toCurrency, setToCurrency] = useState(DEFAULT_CURRENCY.to); // or ""
   const [inputAmount, setInputAmount] = useState(DEFAULT_AMOUNT);
 
+  const inputAmountRef = useRef(null);
+
   const [data, isLoading, isError] = useFetchDebounce(
     fromCurrency,
     toCurrency,
-    onlyNumber(inputAmount)
+    onlyNumber(inputAmount),
   );
 
-  const [favorites, toggleFavorites] = useFavoritesCurrency(
-    fromCurrency,
-    toCurrency
-  );
+  const [favorites, toggleFavorites] = useFavoritesCurrency(fromCurrency, toCurrency);
 
   const currencySwap = useCallback(() => {
     setToCurrency(fromCurrency);
@@ -58,7 +57,8 @@ const CurrencyConverter = () => {
   }, [fromCurrency, toCurrency]);
 
   const clearAmountInput = () => {
-    setInputAmount("1");
+    setInputAmount('');
+    inputAmountRef.current?.focus();
   };
 
   const changeInputAmount = (e) => {
@@ -80,7 +80,7 @@ const CurrencyConverter = () => {
   };
 
   useEffect(() => {
-    const localPair = window.localStorage.getItem("curPair");
+    const localPair = window.localStorage.getItem('curPair');
     checkLocalStoragePair(localPair);
   }, []);
 
@@ -89,10 +89,7 @@ const CurrencyConverter = () => {
 
   return (
     <Container isErrorStatus={isError} title="Курс Обмена">
-      <ToggleFavorites
-        favorites={favorites}
-        toggleFavorites={toggleFavorites}
-      />
+      <ToggleFavorites favorites={favorites} toggleFavorites={toggleFavorites} />
 
       <CurConvertHead>
         <CurConvertValue>
@@ -119,6 +116,7 @@ const CurrencyConverter = () => {
             inputAmount={inputAmount}
             onChangeAmount={changeInputAmount}
             onClearAmount={clearAmountInput}
+            ref={inputAmountRef}
           />
         </CurConvertInpWrapper>
         <FastPrice dataAmount={AmountFast} onAmountFast={onAmountFast} />
@@ -240,7 +238,7 @@ const CurConvertValueDelimiter = styled.div`
   height: 110px;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 50%;
     top: 50%;

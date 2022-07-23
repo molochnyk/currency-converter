@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { FiDelete } from "react-icons/fi";
-import styled from "styled-components";
-import "focus-visible/dist/focus-visible.js";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { FiDelete } from 'react-icons/fi';
+import styled from 'styled-components';
+import 'focus-visible/dist/focus-visible.js';
 
 const InputBase = ({
   label,
   name,
-  type = "text",
+  type = 'text',
   autoComplete,
   placeholder,
   value,
