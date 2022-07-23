@@ -1,29 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
-import millify from "millify";
-import styled from "styled-components";
-import { numberWithCommas } from "../../helpers/numberWithCommas";
+import React from 'react';
+import PropTypes from 'prop-types';
+import millify from 'millify';
+import styled from 'styled-components';
+import { numberWithCommas } from '../../helpers/numberWithCommas';
 
 const titleTable = [
   {
-    title: "#",
-    accessor: "count",
+    title: '#',
+    accessor: 'count',
   },
   {
-    title: "Имя",
-    accessor: "name",
+    title: 'Имя',
+    accessor: 'name',
   },
   {
-    title: "Цена",
-    accessor: "price",
+    title: 'Цена',
+    accessor: 'price',
   },
   {
-    title: "Рыночаня капитализавция",
-    accessor: "marketcapitalization",
+    title: 'Рыночаня капитализавция',
+    accessor: 'marketcapitalization',
   },
   {
-    title: "24ч %",
-    accessor: "pchangepercentage_24h",
+    title: '24ч %',
+    accessor: 'pchangepercentage_24h',
   },
 ];
 
@@ -38,30 +38,34 @@ const TableCrypto = ({ data }) => {
         </TTR>
       </THead>
       <TBody>
-        {data.map((itm, i) => {
-          const profit = itm.market_data.price_change_percentage_24h >= 0;
+        {data.length > 0 ? (
+          data.map((itm, i) => {
+            const profit = itm.market_data.price_change_percentage_24h >= 0;
 
-          return (
-            <TTR key={itm.id}>
-              <TTD>{i + 1}</TTD>
-              <TTD>
-                <img src={itm.image.thumb} alt={itm.name} />
-                <div>
-                  <div>{itm.name}</div>
-                  <div>{itm.symbol}</div>
-                </div>
-              </TTD>
-              <TTD>$ {millify(itm.market_data.current_price.usd)}</TTD>
-              <TTD>$ {millify(itm.market_data.market_cap.usd)}</TTD>
-              <TTD profit={!!profit}>
-                {profit && "+"}
-                {numberWithCommas(
-                  itm.market_data.price_change_percentage_24h.toFixed(2)
-                )}
-              </TTD>
-            </TTR>
-          );
-        })}
+            return (
+              <TTR key={itm.id}>
+                <TTD>{i + 1}</TTD>
+                <TTD>
+                  <img src={itm.image.thumb} alt={itm.name} />
+                  <div>
+                    <div>{itm.name}</div>
+                    <div>{itm.symbol}</div>
+                  </div>
+                </TTD>
+                <TTD>$ {millify(itm.market_data.current_price.usd)}</TTD>
+                <TTD>$ {millify(itm.market_data.market_cap.usd)}</TTD>
+                <TTD profit={!!profit}>
+                  {profit && '+'}
+                  {numberWithCommas(itm.market_data.price_change_percentage_24h.toFixed(2))}
+                </TTD>
+              </TTR>
+            );
+          })
+        ) : (
+          <TTR>
+            <TTDEMPTY>Ничего не нашло 😥</TTDEMPTY>
+          </TTR>
+        )}
       </TBody>
     </Table>
   );
@@ -112,9 +116,16 @@ const TTD = styled.td`
   }
 
   &:nth-child(5) {
-    color: ${({ profit, theme }) =>
-      profit > 0 ? theme.upColor : theme.downColor};
+    color: ${({ profit, theme }) => (profit > 0 ? theme.upColor : theme.downColor)};
   }
+`;
+
+const TTDEMPTY = styled(TTD).attrs({
+  colSpan: 5,
+})`
+  text-align: center;
+  padding: 20px 8px;
+  font-size: 20px;
 `;
 
 TableCrypto.propTypes = {

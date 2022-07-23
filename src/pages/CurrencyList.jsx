@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import Table from "../Components/Table/Table";
-import LoadError from "../containers/LoadError";
-import Container from "../layout/Container";
+import Table from '../Components/Table/Table';
+import LoadError from '../containers/LoadError';
+import Container from '../layout/Container';
 
-import { CURRENCIES_LISTS } from "../constants/abbreviations";
+import { CURRENCIES_LISTS } from '../constants/abbreviations';
 
-import useDataCurrency from "../hooks/useDataListCurrency";
+import useDataCurrency from '../hooks/useDataListCurrency';
 
-import currencyListArrayMod from "../helpers/currencyListArrayMod";
+import currencyListArrayMod from '../helpers/currencyListArrayMod';
 
 const CurrencyList = () => {
   const [dataView, setDataView] = useState([]);
