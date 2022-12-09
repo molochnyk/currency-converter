@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const useDataCurrency = (fromCurrency, toCurrency, amount) => {
   const [data, setData] = useState(null);
@@ -12,8 +12,8 @@ const useDataCurrency = (fromCurrency, toCurrency, amount) => {
         if (Boolean(parseInt(amount))) {
           setIsLoading(true);
           const res = await axios.get(
-            `https://api.exchangerate.host/convert?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`
-            // `ZAPROS`
+            // `https://api.exchangerate.host/convert?from=${fromCurrency}&to=${toCurrency}&amount=${amount}`
+            `ZAPROS`,
           );
           const { result, success } = res.data;
 

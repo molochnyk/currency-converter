@@ -1,29 +1,30 @@
-import React from "react";
+import React from 'react';
 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
 
-import styled, { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from 'styled-components';
 
-import Routes from "../routes";
+import Routes from '../routes';
 
-import { GlobalStyles, lightTheme, darkTheme } from "../styles/globalStyles";
+import { GlobalStyles, lightTheme, darkTheme } from '../styles/globalStyles';
 
-import ToggleTheme from "./ToggleTheme/ToggleTheme";
+import ToggleTheme from './ToggleTheme/ToggleTheme';
 
-import Nav from "./Nav/Nav";
+import Nav from './Nav/Nav';
 
-import useThemeMode from "../hooks/useThemeMode";
+import useThemeMode from '../hooks/useThemeMode';
 
-import "normalize.css/normalize.css";
+import 'normalize.css/normalize.css';
 
 const App = () => {
   const [theme, toggleTheme] = useThemeMode();
-  const themeMode = theme === "light" ? darkTheme : lightTheme;
+  const themeMode = theme === 'light' ? darkTheme : lightTheme;
 
   return (
     <BrowserRouter>
       <ThemeProvider theme={themeMode}>
         <GlobalStyles />
+
         <AppWrapper>
           <ContainerFulHd>
             <ToggleTheme theme={theme} toggleTheme={toggleTheme} />
