@@ -11,6 +11,9 @@ import FastPrice from '../Components/FastPrice/FastPrice';
 import CopyToClip from '../Components/CopyToClip/CopyToClip';
 import ToggleCurrency from '../Components/ToggleCurrency/ToggleCurrency';
 import ToggleFavorites from '../Components/ToggleFavorites/ToggleFavorites';
+import PopupDefault from '../Components/Popup/PopupDefault';
+import Calc from '../Components/Calc/Calc';
+
 import Container from '../layout/Container';
 
 import useFetchDebounce from '../hooks/useFetchDebounce';
@@ -109,6 +112,10 @@ const CurrencyConverter = () => {
           </CurConvertValueTo>
         </CurConvertValue>
       </CurConvertHead>
+
+      <PopupDefault triggerNameText="Калькулятор">
+        <Calc />
+      </PopupDefault>
 
       <CurConvertInpPriceWrapper>
         <CurConvertInpWrapper>
